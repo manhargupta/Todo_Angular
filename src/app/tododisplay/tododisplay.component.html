@@ -1,7 +1,7 @@
 <button (click)="updateList()" class="btn btn-secondary">UPDATE</button>
 <ul class="list-group">
   <li style="background-color: #f8f9fa;" class="list-group-item d-flex justify-content-between" *ngFor="let todo of todoList">
-    <input class="updateTextBox" [id]="todo.id" [(ngModel)]="todo.task" value="{{todo.task}}" disabled="disabled" type="text" ><i style="padding-left: 200px;"  (click)="editData(todo.id)" class="fa fa-pencil prefix" ></i>
+    <input class="updateTextBox" [id]="todo.id" [(ngModel)]="todo.task" value="{{todo.task | uppercase}}" disabled="disabled" type="text" ><i style="padding-left: 200px;"  (click)="editData(todo.id)" class="fa fa-pencil prefix" ></i>
     <div class="form-check">
                         <span *ngIf="todo.done">
                             <input checked="checked" class="form-check-input" type="checkbox" (change)="updateStatus(todo)">

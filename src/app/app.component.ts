@@ -1,23 +1,30 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {todoI} from './Todo'
 import * as $ from 'jquery';
-
+import {TodoServiceService} from './todo-service.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers:[TodoServiceService]
 })
-export class AppComponent {
+export class AppComponent implements OnInit{
   todos:todoI[]= [];
   _listFilter:string;
   filteredTodos:todoI[];
 
-  constructor(){
+  ngOnInit(){
+    this.todos=this._todoServiceService.getTodos();
     this.filteredTodos=this.todos;
   }
+
+  constructor(private _todoServiceService:TodoServiceService){
+  }
+
   get listFilter():string{
     return this._listFilter;
   }
+
   set listFilter(value:string){
     this._listFilter=value;
     this.filteredTodos=this._listFilter? this.performFilter(this._listFilter):this.todos;
