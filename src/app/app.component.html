@@ -10,26 +10,14 @@
   <div class="row" style="margin-top: 70px;">
     <div class="col">
       <!-- Material input -->
-      <app-additem [todoList]="todos" (result)="update($event)" ></app-additem>
+      <app-additem [todoList]="filteredTodos" (result)="update($event)" ></app-additem>
       <button (click)="clear()" class="btn btn-secondary">CLEAR</button>
 
     </div>
     <div class="col">
-      <button click="updateList" class="btn btn-secondary">UPDATE</button>
-      <ul class="list-group">
-        <li style="background-color: #f8f9fa;" class="list-group-item d-flex justify-content-between" *ngFor="let todo of todos">
-          <input class="updateTextBox" value="{{todo.task | uppercase}}" id="todo" disabled="disabled" type="text" ><i style="padding-left: 200px;"  class="fa fa-pencil prefix" ></i>
-          <div class="form-check">
-                        <span *ngIf="todo.done">
-                            <input checked="checked" class="form-check-input" type="checkbox" (change)="updateStatus(todo)">
-                        </span>
-            <span *ngIf="!todo.done">
-                            <input class="form-check-input" type="checkbox" (change)="updateStatus(todo)">
-                        </span>
-
-          </div>
-        </li>
-      </ul>
+      Search : <input type="text" [(ngModel)]="listFilter">
+        <br>
+      <app-tododisplay [todoList]="filteredTodos" (result)="updateList($event)"></app-tododisplay>
     </div>
 
   </div>

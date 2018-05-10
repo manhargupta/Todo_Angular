@@ -1,0 +1,5 @@
+<div class="md-form">
+  <i class="fa fa-pencil prefix"></i>
+  <input #newtask (keypress)="addTaskEnter($event,newtask.value)" placeholder="Add New Task" type="text" id="form1" class="form-control" style="width: 70%">
+</div>
+<button (click)="addTask(newtask.value)"  class="btn btn-secondary">ADD TASK</button>
